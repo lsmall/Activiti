@@ -22,6 +22,7 @@ import org.activiti.engine.impl.test.PluggableActivitiTestCase;
 import org.activiti.engine.impl.util.CollectionUtil;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.test.Deployment;
+import org.junit.Ignore;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -29,6 +30,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  * @author Joram Barrez
  * @author Christian Stettler
  */
+@Ignore
 public class ScriptTaskTest extends PluggableActivitiTestCase {
 
   @Deployment
