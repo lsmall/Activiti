@@ -212,7 +212,7 @@ public class ProcessInstanceHelper {
     
     if (Context.getProcessEngineConfiguration().getEventDispatcher().isEnabled()) {
       Context.getProcessEngineConfiguration().getEventDispatcher()
-        .dispatchEvent(ActivitiEventBuilder.createProcessStartedEvent(execution, variables, false));
+        .dispatchEvent(ActivitiEventBuilder.createProcessStartedEvent(processInstance, variables, false));
     }
   }
   
