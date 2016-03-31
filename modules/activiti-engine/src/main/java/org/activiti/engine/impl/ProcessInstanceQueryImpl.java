@@ -84,6 +84,7 @@ public class ProcessInstanceQueryImpl extends AbstractVariableQueryImpl<ProcessI
   protected boolean onlyChildExecutions;
   protected boolean onlyProcessInstanceExecutions;
   protected boolean onlySubProcessExecutions;
+  protected String rootProcessInstanceId;
 
   public ProcessInstanceQueryImpl() {
   }
@@ -636,6 +637,10 @@ public class ProcessInstanceQueryImpl extends AbstractVariableQueryImpl<ProcessI
 
   public String getProcessInstanceId() {
     return executionId;
+  }
+
+  public String getRootProcessInstanceId() {
+    return rootProcessInstanceId;
   }
 
   public Set<String> getProcessInstanceIds() {
