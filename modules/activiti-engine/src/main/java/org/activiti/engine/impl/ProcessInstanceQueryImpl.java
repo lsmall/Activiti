@@ -83,6 +83,7 @@ public class ProcessInstanceQueryImpl extends AbstractVariableQueryImpl<ProcessI
   protected List<EventSubscriptionQueryValue> eventSubscriptions;
   protected boolean onlyChildExecutions;
   protected boolean onlyProcessInstanceExecutions;
+  protected boolean onlySubProcessExecutions;
 
   public ProcessInstanceQueryImpl() {
   }
@@ -785,4 +786,7 @@ public class ProcessInstanceQueryImpl extends AbstractVariableQueryImpl<ProcessI
     return onlyProcessInstanceExecutions;
   }
 
+  public boolean isOnlySubProcessExecutions() {
+	  return onlySubProcessExecutions;
+  }
 }
