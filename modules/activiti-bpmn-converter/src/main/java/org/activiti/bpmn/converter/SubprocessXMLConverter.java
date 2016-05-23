@@ -90,7 +90,9 @@ public class SubprocessXMLConverter extends BpmnXMLConverter {
       List<BpmnModel> subModels = parseSubModels(model);
       for (BpmnModel tempModel : subModels)
       {
-        BPMNDIExport.writeBPMNDI(tempModel, xtw);
+        if (!tempModel.getFlowLocationMap().isEmpty()) {
+          BPMNDIExport.writeBPMNDI(tempModel, xtw);
+        }
       }
 
       // end definitions root element
@@ -138,7 +140,7 @@ public class SubprocessXMLConverter extends BpmnXMLConverter {
         subModels.addAll(parseSubModels(element, locations, flowLocations, labelLocations));
       }
       
-      if (element instanceof SequenceFlow)
+      if (element instanceof SequenceFlow && null != flowLocations.get(elementId))
       {
         // must be an edge
         mainModel.getFlowLocationMap().put(elementId, flowLocations.get(elementId));
@@ -146,14 +148,16 @@ public class SubprocessXMLConverter extends BpmnXMLConverter {
       else
       {
         // do not include data objects because they do not have a corresponding shape in the BPMNDI data
-        if (!(element instanceof DataObject))
+        if (!(element instanceof DataObject) && null != locations.get(elementId))
         {
           // must be a shape
           mainModel.getLocationMap().put(elementId, locations.get(elementId));
         }
       }
       // also check for any labels
-      mainModel.getLabelLocationMap().put(elementId, labelLocations.get(elementId));
+      if (null != labelLocations.get(elementId)) {
+        mainModel.getLabelLocationMap().put(elementId, labelLocations.get(elementId));
+      }
     }
     // add main process model to list
     subModels.add(mainModel);
@@ -183,7 +187,7 @@ public class SubprocessXMLConverter extends BpmnXMLConverter {
       {
         subModels.addAll(parseSubModels(element, locations, flowLocations, labelLocations));
       }
-      if (element instanceof SequenceFlow)
+      if (element instanceof SequenceFlow && null != flowLocations.get(elementId))
       {
         // must be an edge
         subModel.getFlowLocationMap().put(elementId, flowLocations.get(elementId));
@@ -191,14 +195,16 @@ public class SubprocessXMLConverter extends BpmnXMLConverter {
       else
       {
         // do not include data objects because they do not have a corresponding shape in the BPMNDI data
-        if (!(element instanceof DataObject))
+        if (!(element instanceof DataObject) && null != locations.get(elementId))
         {
           // must be a shape
           subModel.getLocationMap().put(elementId, locations.get(elementId));
         }
       }
       // also check for any labels
-      subModel.getLabelLocationMap().put(elementId, labelLocations.get(elementId));
+      if (null != labelLocations.get(elementId)) {
+        subModel.getLabelLocationMap().put(elementId, labelLocations.get(elementId));
+      }
     }
     subModels.add(subModel);
 
